@@ -1,14 +1,10 @@
 require 'dashing'
 require "sinatra/activerecord"
-use ActiveRecord::ConnectionAdapters::ConnectionManagement
-ActiveRecord::Base.establish_connection(
-  adapter:  'sqlite3',
-  database: 'test.sqlite3',
-  host:     'localhost',
-)
+Dir["#{File.dirname(__FILE__)}/models/**/*.rb"].each { |f| puts f; require(f) }
 
-#set :database, "sqlite3:///test.sqlite3"
-#set :database, {adapter: "sqlite3", database: "test.sqlite3"}
+set :database_file, "database.yml"
+
+
 
 configure do
   set :auth_token, 'YOUR_AUTH_TOKEN'
