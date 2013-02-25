@@ -1,2 +1,2 @@
 require "sinatra/activerecord/rake"
-require "dashing"
+ActiveRecord::Base.establish_connection(YAML.load_file('database.yml'))
